@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="co.edu.uniquindio.proyectofinalp2.controller.LoginController"
+           stylesheets="@styles/login.css"
+           style="-fx-background-color: linear-gradient(to bottom right, #FEF3C7, #FED7AA, #FDE68A);">
+
+    <!-- Panel de Selección de Usuario -->
+    <VBox fx:id="panelSeleccion" alignment="CENTER" spacing="40" visible="true" managed="true">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- Header -->
+        <VBox alignment="CENTER" spacing="10">
+            <HBox alignment="CENTER" spacing="15">
+                <Label text="📦" style="-fx-font-size: 48px;"/>
+                <Label text="LogiExpress" styleClass="titulo-principal"/>
+            </HBox>
+            <Label text="Plataforma de Logística y Envíos Urbanos" styleClass="subtitulo"/>
+        </VBox>
+
+        <!-- Contenedor de tarjetas de usuario -->
+        <VBox alignment="CENTER" spacing="20" styleClass="contenedor-seleccion">
+            <Label text="Selecciona tu tipo de usuario" styleClass="titulo-seccion"/>
+
+            <HBox alignment="CENTER" spacing="30" maxWidth="1000">
+                <!-- Tarjeta Cliente -->
+                <VBox alignment="CENTER" spacing="15" styleClass="tarjeta-usuario, tarjeta-cliente"
+                      onMouseClicked="#seleccionarCliente" maxWidth="280">
+                    <padding>
+                        <Insets top="30" right="30" bottom="30" left="30"/>
+                    </padding>
+
+                    <Circle radius="40" styleClass="icono-circulo"/>
+                    <Label text="👤" style="-fx-font-size: 48px;"/>
+                    <Label text="Cliente" styleClass="nombre-usuario"/>
+                    <Label text="Solicita y rastrea tus envíos" styleClass="descripcion-usuario"
+                           wrapText="true" textAlignment="CENTER" maxWidth="220"/>
+                </VBox>
+
+                <!-- Tarjeta Repartidor -->
+                <VBox alignment="CENTER" spacing="15" styleClass="tarjeta-usuario, tarjeta-repartidor"
+                      onMouseClicked="#seleccionarRepartidor" maxWidth="280">
+                    <padding>
+                        <Insets top="30" right="30" bottom="30" left="30"/>
+                    </padding>
+
+                    <Circle radius="40" styleClass="icono-circulo"/>
+                    <Label text="🚚" style="-fx-font-size: 48px;"/>
+                    <Label text="Repartidor" styleClass="nombre-usuario"/>
+                    <Label text="Gestiona tus entregas" styleClass="descripcion-usuario"
+                           wrapText="true" textAlignment="CENTER" maxWidth="220"/>
+                </VBox>
+
+                <!-- Tarjeta Administrador -->
+                <VBox alignment="CENTER" spacing="15" styleClass="tarjeta-usuario, tarjeta-admin"
+                      onMouseClicked="#seleccionarAdministrador" maxWidth="280">
+                    <padding>
+                        <Insets top="30" right="30" bottom="30" left="30"/>
+                    </padding>
+
+                    <Circle radius="40" styleClass="icono-circulo"/>
+                    <Label text="🛡️" style="-fx-font-size: 48px;"/>
+                    <Label text="Administrador" styleClass="nombre-usuario"/>
+                    <Label text="Panel de control y métricas" styleClass="descripcion-usuario"
+                           wrapText="true" textAlignment="CENTER" maxWidth="220"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <Label text="© 2025 LogiExpress - Envíos urbanos same-day" styleClass="footer-text"/>
+    </VBox>
+
+    <!-- Panel de Login -->
+    <VBox fx:id="panelLogin" alignment="CENTER" spacing="25" visible="false" managed="false"
+          maxWidth="450">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- Contenedor del formulario -->
+        <VBox alignment="CENTER" spacing="25" styleClass="contenedor-login">
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <!-- Botón volver -->
+            <HBox>
+                <Button text="← Volver a selección" styleClass="btn-volver"
+                        onAction="#volverSeleccion"/>
+            </HBox>
+
+            <!-- Header del login -->
+            <VBox alignment="CENTER" spacing="15">
+                <Circle radius="35" styleClass="icono-circulo-login"/>
+                <Label fx:id="labelIconoLogin" text="👤" style="-fx-font-size: 40px;"/>
+                <Label text="Iniciar Sesión" styleClass="titulo-login"/>
+                <Label fx:id="labelTipoUsuario" text="Cliente" styleClass="tipo-usuario-login"/>
+            </VBox>
+
+            <!-- Formulario -->
+            <VBox spacing="20" prefWidth="350">
+                <!-- Email -->
+                <VBox spacing="8">
+                    <Label text="Correo Electrónico" styleClass="label-campo"/>
+                    <TextField fx:id="txtEmail" promptText="usuario@ejemplo.com"
+                               styleClass="campo-texto"/>
+                </VBox>
+
+                <!-- Password -->
+                <VBox spacing="8">
+                    <Label text="Contraseña" styleClass="label-campo"/>
+                    <PasswordField fx:id="txtPassword" promptText="••••••••"
+                                   styleClass="campo-texto"/>
+                </VBox>
+
+                <!-- Botón Login -->
+                <Button text="Iniciar Sesión" styleClass="btn-login"
+                        onAction="#iniciarSesion" prefWidth="350" prefHeight="45"/>
+
+                <!-- Olvidaste contraseña -->
+                <HBox alignment="CENTER">
+                    <Button text="¿Olvidaste tu contraseña?" styleClass="btn-link"
+                            onAction="#olvidarPassword"/>
+                </HBox>
+
+                <!-- Registro (solo para clientes) -->
+                <HBox fx:id="contenedorRegistro" alignment="CENTER" spacing="5"
+                      visible="false" managed="false">
+                    <Label text="¿No tienes cuenta?" styleClass="texto-registro"/>
+                    <Button text="Regístrate aquí" styleClass="btn-link-registro"
+                            onAction="#mostrarRegistro"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <Label text="© 2025 LogiExpress" styleClass="footer-text"/>
+    </VBox>
+
+</StackPane>
